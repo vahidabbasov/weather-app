@@ -1,5 +1,5 @@
 let link =
-  "http://api.weatherstack.com/current?access_key=faffd787f8c3ab82cac8e7019bf39a73";
+  "http://api.weatherstack.com/current?access_key=96a01186f8594a9ab787a838a3c7451b";
 
 const root = document.getElementById("root");
 const popup = document.getElementById('popup')
@@ -26,7 +26,7 @@ let store = {
   },
 };
 
-const fetchData = async () => {
+let fetchData = async () => {
  try {
 
     const query = localStorage.getItem('query') || store.city
@@ -102,8 +102,8 @@ const fetchData = async () => {
 
 };
 
-const getImage = (description) => {
-  const value = description.toLowerCase();
+let getImage = (description) => {
+  let value = description.toLowerCase();
   switch (value) {
     case "partly cloudy":
       return "partly.png";
@@ -124,7 +124,7 @@ const getImage = (description) => {
 };
 
 
-const renderProperty = (properties) =>
+let renderProperty = (properties) =>
    Object.values(properties)
     .map(
       ({ icon, value, title }) => `
@@ -143,10 +143,10 @@ const renderProperty = (properties) =>
 
 
 
-const markup = () => {
+let markup = () => {
   const { city, description, observationTime, temperature, isDay, properties } = store;
 
- const containerClass = isDay ==='yes' ? 'is-day':''
+ let containerClass = isDay ==='yes' ? 'is-day':''
    
   return `<div class="container ${containerClass}">
     <div class="top">
@@ -173,7 +173,7 @@ const markup = () => {
 
 
 
-const toggleClass=()=>{
+let toggleClass=()=>{
     popup.classList.toggle("active")
 }
 
@@ -196,7 +196,6 @@ const handleSubmit=(e)=>{
     const value = store.city
     if(!value ) return null
     
-    localStorage.setItem('query',value )
 
     fetchData()
     toggleClass()
